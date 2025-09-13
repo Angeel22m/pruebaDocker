@@ -1,5 +1,4 @@
 
-````markdown
 # 🚀 Proyecto con Docker Desktop (Windows)
 
 Este proyecto contiene un **frontend**, un **backend** y una **base de datos PostgreSQL**, todo orquestado con **Docker Compose**.  
