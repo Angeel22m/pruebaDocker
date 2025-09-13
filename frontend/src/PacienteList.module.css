@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #020c1f; /* gris claro */
+  color: #111827; /* gris muy oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+h1 {
+  margin-bottom: 20px;
+  color: #9b98d4; /* azul elegante */
+  text-align: center;
+
+}
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #01172d;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #9b98d4; /* azul elegante */
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.input:focus {
+  border-color: #3b82f6; /* azul fuerte al focus */
+  outline: none;
+}
+
+.button {
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #2563eb;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background-color: rgb(114, 155, 212);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.cardText {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #374151; /* gris oscuro */
+}
+
+.cardButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.editButton {
+  background-color: #facc15; /* amarillo */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background-color: #eab308;
+}
+
+.deleteButton {
+  background-color: #ef4444; /* rojo */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #dc2626;
+}
