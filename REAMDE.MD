@@ -53,10 +53,10 @@ docker compose version
 
 ## 🌐 Acceso a la aplicación
 
-* **Frontend (Angular/React/Vue, según tu proyecto)**
+* **Frontend (React+Vite)**
   👉 [http://localhost:8080](http://localhost:8080)
 
-* **Backend (API)**
+* **Backend (NestJS)**
   👉 [http://localhost:3000](http://localhost:3000)
 
 * **Base de datos PostgreSQL**
