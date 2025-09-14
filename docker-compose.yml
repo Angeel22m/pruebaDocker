@@ -4,7 +4,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: dockerfile
-    image: angeel22m/proyecto-frontend:lastest 
+      dockerfile: Dockerfile
+    image: angeel22m/proyecto-frontend:latest 
     ports:
       - "8080:80"
