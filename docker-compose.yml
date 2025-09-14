@@ -1,10 +1,43 @@
 version: '3.9'
 
 services:
+  db:
+    image: postgres:15-alpine
+    container_name: proyecto_db
+    environment:
+      POSTGRES_USER: proyecto_user
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: proyecto_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    image: angeel22m/proyecto-backend:latest  # Imagen para Docker Hub
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: proyecto_user
+      DATABASE_PASSWORD: 12345678
+      DATABASE_NAME: proyecto_db
+    depends_on:
+      - db
+
   frontend:
     build:
       context: ./frontend
       dockerfile: dockerfile
-    image: angeel22m/proyecto-frontend:latest 
+    image: angeel22m/proyecto-frontend:latest  # Imagen para Docker Hub
     ports:
       - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
