@@ -1,117 +1,140 @@
 
-# 🚀 Proyecto con Docker Desktop (Windows)
-
-Este proyecto contiene un **frontend**, un **backend** y una **base de datos PostgreSQL**, todo orquestado con **Docker Compose**.  
-Solo necesitas tener instalado **Docker Desktop para Windows**.
-
 ---
 
-## 📋 Requisitos previos
+# ProyectoIngenieria
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado y en ejecución  
-- Git (opcional, si deseas clonar el repositorio)
-
-Verifica la instalación ejecutando en **PowerShell** o **CMD**:
-
-```bash
-docker -v
-docker compose version
-````
-
----
-
-## ▶️ Pasos para ejecutar la aplicación
-
-1. Clonar el repositorio o descargar el código:
-
-   ```bash
-   git clone https://github.com/usuario/proyecto.git
-   cd proyecto
-   ```
-
-2. Levantar la aplicación con Docker Compose:
-
-   ```bash
-   docker compose up
-   ```
-
-   > 🔹 Este comando construirá las imágenes y levantará los contenedores del **frontend**, **backend** y **base de datos**.
-
-3. (Opcional) Ejecutar en segundo plano:
-
-   ```bash
-   docker compose up -d
-   ```
-
-4. Para detener la aplicación:
-
-   ```bash
-   docker compose down
-   ```
-
----
-
-## 🌐 Acceso a la aplicación
-
-* **Frontend (React+Vite)**
-  👉 [http://localhost:8080](http://localhost:8080)
-
-* **Backend (NestJS)**
-  👉 [http://localhost:3000](http://localhost:3000)
-
-* **Base de datos PostgreSQL**
-  👉 Host: `localhost`
-  👉 Puerto: `5433`
-  👉 Usuario: `proyecto_user`
-  👉 Password: `12345678`
-  👉 DB: `proyecto_db`
-
----
-
-## 🛠️ Comandos útiles
-
-* Ver logs de los contenedores:
-
-  ```bash
-  docker compose logs -f
-  ```
-
-* Reconstruir las imágenes:
-
-  ```bash
-  docker compose up --build
-  ```
-
-* Eliminar contenedores, redes e imágenes asociadas:
-
-  ```bash
-  docker compose down --volumes --rmi all
-  ```
+Este proyecto contiene una aplicación completa con **frontend**, **backend** y **base de datos PostgreSQL**, dockerizada para facilidad de despliegue y desarrollo.
 
 ---
 
 ## 📂 Estructura del proyecto
 
 ```
-proyecto/
-│
-├─ backend/          # Código del backend + Dockerfile
-├─ frontend/         # Código del frontend + Dockerfile
+proyectoIngenieria/
+├─ frontend/         # Código del frontend (React+vite)
+│  ├─ dockerfile
+│  ├─ package.json
+│  └─ src/
+├─ backend/          # Código del backend (Node/Nestjs)
+│  ├─ dockerfile
+│  ├─ package.json
+│  └─ src/
 ├─ docker-compose.yml
-└─ README.md
+└─ .github/workflows/
+   └─ docker-compose-build.yml  # GitHub Actions para CI/CD
 ```
 
 ---
 
-## ✅ Notas
+## 🐳 Requisitos
 
-* No necesitas instalar Node, Postgres ni dependencias en tu máquina.
-* Todo corre dentro de los contenedores.
-* Si cambias el código del backend/frontend, recuerda reconstruir:
+* Docker ≥ 20.10
+* Docker Compose ≥ 1.29
+* Cuenta en Docker Hub (para subir/traer imágenes)
+* Git (para clonar el proyecto)
 
-  ```bash
-  docker compose up --build
-  ```
+---
 
+## ⚡ Configuración
+
+1. Clonar el proyecto:
+
+```bash
+git clone <URL_DEL_REPO>
+cd proyectoIngenieria
 ```
 
+2. Configurar variables de entorno (opcional, si no quieres dejar passwords en el compose):
+
+```bash
+cp .env.example .env
+```
+
+* `.env` puede contener:
+
+```
+POSTGRES_USER=proyecto_user
+POSTGRES_PASSWORD=12345678
+POSTGRES_DB=proyecto_db
+```
+
+---
+
+## 🚀 Levantar la aplicación
+
+### Opción 1: Usando imágenes desde Docker Hub
+
+```bash
+docker-compose pull
+docker-compose up -d
+```
+
+* Frontend: [http://localhost:8080](http://localhost:8080)
+* Backend: [http://localhost:3000](http://localhost:3000)
+* Base de datos PostgreSQL: puerto 5433
+
+### Opción 2: Construir localmente con Docker Compose
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+---
+
+## 🏗 GitHub Actions / CI-CD
+
+El proyecto incluye un workflow que **construye y sube las imágenes a Docker Hub**:
+
+* Archivo: `.github/workflows/docker-compose-build.yml`
+* Lo que hace:
+
+  * Construye la imagen del **backend** y **frontend**.
+  * Sube las imágenes a Docker Hub con tres tags:
+
+    * `latest`
+    * `${{ github.ref_name }}` → rama
+    * `${{ github.sha }}` → commit
+
+---
+
+## 🔧 Comandos útiles
+
+* Ver contenedores corriendo:
+
+```bash
+docker ps
+```
+
+* Ver imágenes locales:
+
+```bash
+docker images
+```
+
+* Parar y eliminar contenedores, redes y volúmenes:
+
+```bash
+docker compose down --remove-orphans
+```
+
+* Limpiar todo lo que no se use:
+
+```bash
+docker system prune -f
+docker volume prune -f
+```
+
+---
+
+## 📝 Notas importantes
+
+* Se recomienda usar **.env** para contraseñas y datos sensibles.
+* Healthchecks y persistencia de volúmenes están configurados para que la app sea estable.
+* Puedes modificar los puertos en `docker-compose.yml` según tu necesidad.
+* El workflow de GitHub Actions requiere los **secrets**:
+
+  * `DOCKER_USERNAME` → Usuario de Docker Hub
+  * `DOCKER_PASSWORD` → Access Token de Docker Hub
+
+---
