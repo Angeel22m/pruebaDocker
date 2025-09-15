@@ -30,8 +30,7 @@ jobs:
           push: true
           tags: |
             angeel22m/proyecto-backend:latest
-            angeel22m/proyecto-backend:${{ github.ref_name }}
-            angeel22m/proyecto-backend:${{ github.sha }}
+            angeel22m/proyecto-backend:${{ github.ref_name }}        
 
       - name: Build and push frontend
         uses: docker/build-push-action@v4
@@ -42,4 +41,3 @@ jobs:
           tags: |
             angeel22m/proyecto-frontend:latest
             angeel22m/proyecto-frontend:${{ github.ref_name }}
-            angeel22m/proyecto-frontend:${{ github.sha }}
