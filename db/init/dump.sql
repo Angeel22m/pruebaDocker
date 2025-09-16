@@ -1,7 +1,6 @@
 -- ==========================================
--- Base de datos de prueba: odontología
--- Tablas: pacientes, odontologos, tratamientos, citas
--- Datos de prueba incluidos
+-- Base de datos de prueba
+-- Tablas: pacientes
 -- ==========================================
 
 -- =========================
