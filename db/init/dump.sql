@@ -8,8 +8,8 @@
 -- =========================
 CREATE TABLE pacientes (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL
+    nombre VARCHAR(100) ,
+    apellido VARCHAR(100)
 );
 
 INSERT INTO pacientes (nombre, apellido)
