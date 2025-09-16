@@ -1,16 +1,3 @@
--- ==========================================
--- Base de datos de prueba
--- Tablas: pacientes
--- ==========================================
-
--- =========================
--- TABLA: pacientes
--- =========================
-CREATE TABLE pacientes (
-    id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100) ,
-    apellido VARCHAR(100)
-);
 
 INSERT INTO pacientes (nombre, apellido)
 VALUES 
